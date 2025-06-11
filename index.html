@@ -90,44 +90,47 @@
   </div>
 
   <script>
-    const letters = document.querySelectorAll('.letter');
-    const a = document.getElementById('a');
-    const i = document.getElementById('i');
-    const subtextBlock = document.getElementById('subtext');
-    const footer = document.getElementById('footer');
+  const letters = document.querySelectorAll('.letter');
+  const a = document.getElementById('a');
+  const i = document.getElementById('i');
+  const subtextBlock = document.getElementById('subtext');
+  const footer = document.getElementById('footer');
 
-    const letterDelay = 200;
+  const letterDelay = 300;           // tempo entre letras (ajuste aqui se quiser mais rápido/lento)
+  const pauseBeforeGlow = 1000;      // tempo depois que "I" aparece até o brilho começar
+  const glowDuration = 800;          // tempo que o brilho âmbar dura
 
-    async function animateLetters() {
-      for (let letter of letters) {
-        letter.style.opacity = '1';
-        await new Promise(resolve => setTimeout(resolve, letterDelay));
-      }
-
-      // Após 1s, brilho no AI
-      setTimeout(() => {
-        a.classList.add('amber-glow');
-        i.classList.add('amber-glow');
-      }, 1000);
-
-      // Remover brilho após mais 1s
-      setTimeout(() => {
-        a.style.textShadow = 'none';
-        i.style.textShadow = 'none';
-      }, 200);
-
-      // Frases
-      setTimeout(() => {
-        subtextBlock.classList.add('visible');
-      }, 2200);
-
-      // Rodapé
-      setTimeout(() => {
-        footer.classList.add('visible');
-      }, 3500);
+  async function animateLetters() {
+    for (let letter of letters) {
+      letter.style.opacity = '1';
+      await new Promise(resolve => setTimeout(resolve, letterDelay));
     }
 
-    animateLetters();
-  </script>
+    // Começa o brilho do AI depois da pausa desejada
+    setTimeout(() => {
+      a.classList.add('amber-glow');
+      i.classList.add('amber-glow');
+    }, pauseBeforeGlow);
+
+    // Remove o brilho após a duração definida
+    setTimeout(() => {
+      a.style.textShadow = 'none';
+      i.style.textShadow = 'none';
+    }, pauseBeforeGlow + glowDuration);
+
+    // Subfrases surgem depois do brilho
+    setTimeout(() => {
+      subtextBlock.classList.add('visible');
+    }, pauseBeforeGlow + glowDuration + 200);
+
+    // Frase do rodapé surge depois
+    setTimeout(() => {
+      footer.classList.add('visible');
+    }, pauseBeforeGlow + glowDuration + 1300);
+  }
+
+  animateLetters();
+</script>
+
 </body>
 </html>
