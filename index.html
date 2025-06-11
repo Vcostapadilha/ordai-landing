@@ -18,7 +18,7 @@
     }
 
     .container {
-      margin-top: 80px; /* Subido */
+      margin-top: 120px; /* Ajustado: nem centralizado nem tão alto */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,18 +41,22 @@
       text-shadow: 0 0 30px #FFC76A;
     }
 
-    .subtext {
+    .subtext-block {
       margin-top: 20px;
       text-align: center;
-      font-size: 18px;
       opacity: 0;
       transition: opacity 1s ease-in;
+    }
+
+    .subtext {
+      font-size: 18px;
       font-weight: 400;
+      margin: 4px 0;
     }
 
     .footer-text {
       position: absolute;
-      bottom: 60px; /* Subido */
+      bottom: 60px;
       text-align: center;
       font-size: 16px;
       color: #f5f5f5;
@@ -75,8 +79,10 @@
       <span class="letter" id="i">I</span>
     </div>
 
-    <div class="subtext" id="sub1">Organize o que importa.</div>
-    <div class="subtext" id="sub2">Sua IA pessoal de disciplina e evolução.</div>
+    <div class="subtext-block" id="subtext">
+      <div class="subtext">Organize o que importa.</div>
+      <div class="subtext">Sua IA pessoal de disciplina e evolução.</div>
+    </div>
   </div>
 
   <div class="footer-text" id="footer">
@@ -87,8 +93,7 @@
     const letters = document.querySelectorAll('.letter');
     const a = document.getElementById('a');
     const i = document.getElementById('i');
-    const sub1 = document.getElementById('sub1');
-    const sub2 = document.getElementById('sub2');
+    const subtextBlock = document.getElementById('subtext');
     const footer = document.getElementById('footer');
 
     // Letras uma a uma
@@ -100,27 +105,24 @@
 
     const baseDelay = 200 * letters.length;
 
-    // Brilho do AI (início antecipado, duração reduzida)
+    // Brilho no AI
     setTimeout(() => {
       a.classList.add('amber-glow');
       i.classList.add('amber-glow');
     }, baseDelay);
 
+    // Remover brilho
     setTimeout(() => {
       a.style.textShadow = 'none';
       i.style.textShadow = 'none';
     }, baseDelay + 1000);
 
-    // Subfrases
+    // Subfrases juntas
     setTimeout(() => {
-      sub1.classList.add('visible');
+      subtextBlock.classList.add('visible');
     }, baseDelay + 1200);
 
-    setTimeout(() => {
-      sub2.classList.add('visible');
-    }, baseDelay + 1600);
-
-    // Rodapé com fade-in
+    // Rodapé
     setTimeout(() => {
       footer.classList.add('visible');
     }, baseDelay + 2500);
