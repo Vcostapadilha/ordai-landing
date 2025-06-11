@@ -18,7 +18,7 @@
     }
 
     .container {
-      margin-top: 160px; /* Ajustado: nem centralizado nem tão alto */
+      margin-top: 160px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -95,46 +95,39 @@
     const i = document.getElementById('i');
     const subtextBlock = document.getElementById('subtext');
     const footer = document.getElementById('footer');
-  
+
     const letterDelay = 400;
-  
-    // Sequência forçada com await
+
     async function animateLetters() {
       for (let letter of letters) {
-        await new Promise(resolve => {
-          letter.style.opacity = '1';
-          setTimeout(resolve, letterDelay);
-        });
+        letter.style.opacity = '1';
+        await new Promise(resolve => setTimeout(resolve, letterDelay));
       }
-  
-      // 1s após última letra
+
+      // Após 1s, brilho no AI
       setTimeout(() => {
         a.classList.add('amber-glow');
         i.classList.add('amber-glow');
       }, 1000);
-  
-      // Brilho curto (1s depois)
+
+      // Remover brilho após mais 1s
       setTimeout(() => {
         a.style.textShadow = 'none';
         i.style.textShadow = 'none';
       }, 2000);
-  
-      // Subtextos juntos
+
+      // Frases
       setTimeout(() => {
         subtextBlock.classList.add('visible');
       }, 2200);
-  
+
       // Rodapé
       setTimeout(() => {
         footer.classList.add('visible');
       }, 3500);
     }
-  
-    // Inicia animação ao carregar
+
     animateLetters();
   </script>
-  
-
 </body>
 </html>
-
