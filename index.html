@@ -90,43 +90,50 @@
   </div>
 
   <script>
-  const letters = document.querySelectorAll('.letter');
-  const a = document.getElementById('a');
-  const i = document.getElementById('i');
-  const subtextBlock = document.getElementById('subtext');
-  const footer = document.getElementById('footer');
-
-  const letterDelay = 400; // Mais lento e elegante
-  letters.forEach((letter, index) => {
-    setTimeout(() => {
-      letter.style.opacity = '1';
-    }, letterDelay * index);
-  });
-
-  const baseDelay = letterDelay * letters.length;
-
-  // Aguarda 1s após última letra para iniciar o brilho
-  setTimeout(() => {
-    a.classList.add('amber-glow');
-    i.classList.add('amber-glow');
-  }, baseDelay + 1000);
-
-  // Brilho curto
-  setTimeout(() => {
-    a.style.textShadow = 'none';
-    i.style.textShadow = 'none';
-  }, baseDelay + 2000);
-
-  // Subfrases
-  setTimeout(() => {
-    subtextBlock.classList.add('visible');
-  }, baseDelay + 2200);
-
-  // Rodapé
-  setTimeout(() => {
-    footer.classList.add('visible');
-  }, baseDelay + 3500);
-</script>
+    const letters = document.querySelectorAll('.letter');
+    const a = document.getElementById('a');
+    const i = document.getElementById('i');
+    const subtextBlock = document.getElementById('subtext');
+    const footer = document.getElementById('footer');
+  
+    const letterDelay = 400;
+  
+    // Sequência forçada com await
+    async function animateLetters() {
+      for (let letter of letters) {
+        await new Promise(resolve => {
+          letter.style.opacity = '1';
+          setTimeout(resolve, letterDelay);
+        });
+      }
+  
+      // 1s após última letra
+      setTimeout(() => {
+        a.classList.add('amber-glow');
+        i.classList.add('amber-glow');
+      }, 1000);
+  
+      // Brilho curto (1s depois)
+      setTimeout(() => {
+        a.style.textShadow = 'none';
+        i.style.textShadow = 'none';
+      }, 2000);
+  
+      // Subtextos juntos
+      setTimeout(() => {
+        subtextBlock.classList.add('visible');
+      }, 2200);
+  
+      // Rodapé
+      setTimeout(() => {
+        footer.classList.add('visible');
+      }, 3500);
+    }
+  
+    // Inicia animação ao carregar
+    animateLetters();
+  </script>
+  
 
 </body>
 </html>
