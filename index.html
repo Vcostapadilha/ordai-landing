@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORDAI</title>
+  <style>
+    @font-face {
+      font-family: 'SF Pro Display';
+      src: url('https://fonts.cdnfonts.com/s/19173/SFPRODISPLAYREGULAR.woff') format('woff');
+    }
+
+    body {
+      margin: 0;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      font-family: 'SF Pro Display', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .ordai {
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      animation: reveal 2s ease forwards;
+    }
+
+    .ai {
+      color: #FFB300;
+      animation: glow 1s ease-in-out 2s forwards;
+    }
+
+    .text-block {
+      opacity: 0;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 3s;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      0% { text-shadow: none; }
+      50% { text-shadow: 0 0 10px #FFB300, 0 0 20px #FFB300; }
+      100% { text-shadow: none; }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ordai">ORD<span class="ai">AI</span></div>
+  <div class="text-block">
+    <div>Organize o que importa.<br>Sua IA pessoal de disciplina e evolução.</div>
+    <div style="margin-top:1rem;opacity:0.6;">A versão beta do ORDAI está chegando.</div>
+  </div>
+</body>
+</html>
+
