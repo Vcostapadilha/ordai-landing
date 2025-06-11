@@ -4,23 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ORDAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       background-color: #000;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: 'Helvetica Neue', sans-serif;
-      position: relative;
+      font-family: 'Inter', sans-serif;
       color: #f5f5f5;
+    }
+
+    .container {
+      margin-top: 80px; /* Subido */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo {
       font-size: 48px;
-      font-weight: bold;
+      font-weight: 700;
       letter-spacing: 4px;
       display: flex;
     }
@@ -41,11 +47,12 @@
       font-size: 18px;
       opacity: 0;
       transition: opacity 1s ease-in;
+      font-weight: 400;
     }
 
     .footer-text {
       position: absolute;
-      bottom: 30px;
+      bottom: 60px; /* Subido */
       text-align: center;
       font-size: 16px;
       color: #f5f5f5;
@@ -59,16 +66,18 @@
   </style>
 </head>
 <body>
-  <div class="logo" id="logo">
-    <span class="letter">O</span>
-    <span class="letter">R</span>
-    <span class="letter">D</span>
-    <span class="letter" id="a">A</span>
-    <span class="letter" id="i">I</span>
-  </div>
+  <div class="container">
+    <div class="logo" id="logo">
+      <span class="letter">O</span>
+      <span class="letter">R</span>
+      <span class="letter">D</span>
+      <span class="letter" id="a">A</span>
+      <span class="letter" id="i">I</span>
+    </div>
 
-  <div class="subtext" id="sub1">Organize o que importa.</div>
-  <div class="subtext" id="sub2">Sua IA pessoal de disciplina e evolução.</div>
+    <div class="subtext" id="sub1">Organize o que importa.</div>
+    <div class="subtext" id="sub2">Sua IA pessoal de disciplina e evolução.</div>
+  </div>
 
   <div class="footer-text" id="footer">
     A versão beta do ORDAI está chegando.
@@ -82,7 +91,7 @@
     const sub2 = document.getElementById('sub2');
     const footer = document.getElementById('footer');
 
-    // Letras surgem uma a uma
+    // Letras uma a uma
     letters.forEach((letter, index) => {
       setTimeout(() => {
         letter.style.opacity = '1';
@@ -91,19 +100,18 @@
 
     const baseDelay = 200 * letters.length;
 
-    // Início do brilho (1s mais cedo que antes)
+    // Brilho do AI (início antecipado, duração reduzida)
     setTimeout(() => {
       a.classList.add('amber-glow');
       i.classList.add('amber-glow');
-    }, baseDelay + 0); // antes era baseDelay + 1000
+    }, baseDelay);
 
-    // Brilho mais curto (duração reduzida pela metade)
     setTimeout(() => {
       a.style.textShadow = 'none';
       i.style.textShadow = 'none';
-    }, baseDelay + 1000); // antes era +3000
+    }, baseDelay + 1000);
 
-    // Frases abaixo do ORDAI
+    // Subfrases
     setTimeout(() => {
       sub1.classList.add('visible');
     }, baseDelay + 1200);
@@ -112,7 +120,7 @@
       sub2.classList.add('visible');
     }, baseDelay + 1600);
 
-    // Frase do rodapé com fade-in
+    // Rodapé com fade-in
     setTimeout(() => {
       footer.classList.add('visible');
     }, baseDelay + 2500);
