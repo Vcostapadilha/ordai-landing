@@ -90,42 +90,43 @@
   </div>
 
   <script>
-    const letters = document.querySelectorAll('.letter');
-    const a = document.getElementById('a');
-    const i = document.getElementById('i');
-    const subtextBlock = document.getElementById('subtext');
-    const footer = document.getElementById('footer');
+  const letters = document.querySelectorAll('.letter');
+  const a = document.getElementById('a');
+  const i = document.getElementById('i');
+  const subtextBlock = document.getElementById('subtext');
+  const footer = document.getElementById('footer');
 
-    // Letras uma a uma
-    letters.forEach((letter, index) => {
-      setTimeout(() => {
-        letter.style.opacity = '1';
-      }, 200 * index);
-    });
-
-    const baseDelay = 200 * letters.length;
-
-    // Brilho no AI
+  const letterDelay = 400; // Mais lento e elegante
+  letters.forEach((letter, index) => {
     setTimeout(() => {
-      a.classList.add('amber-glow');
-      i.classList.add('amber-glow');
-    }, baseDelay);
+      letter.style.opacity = '1';
+    }, letterDelay * index);
+  });
 
-    // Remover brilho
-    setTimeout(() => {
-      a.style.textShadow = 'none';
-      i.style.textShadow = 'none';
-    }, baseDelay + 1000);
+  const baseDelay = letterDelay * letters.length;
 
-    // Subfrases juntas
-    setTimeout(() => {
-      subtextBlock.classList.add('visible');
-    }, baseDelay + 1200);
+  // Aguarda 1s após última letra para iniciar o brilho
+  setTimeout(() => {
+    a.classList.add('amber-glow');
+    i.classList.add('amber-glow');
+  }, baseDelay + 1000);
 
-    // Rodapé
-    setTimeout(() => {
-      footer.classList.add('visible');
-    }, baseDelay + 2500);
-  </script>
+  // Brilho curto
+  setTimeout(() => {
+    a.style.textShadow = 'none';
+    i.style.textShadow = 'none';
+  }, baseDelay + 2000);
+
+  // Subfrases
+  setTimeout(() => {
+    subtextBlock.classList.add('visible');
+  }, baseDelay + 2200);
+
+  // Rodapé
+  setTimeout(() => {
+    footer.classList.add('visible');
+  }, baseDelay + 3500);
+</script>
+
 </body>
 </html>
